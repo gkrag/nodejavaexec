@@ -3,7 +3,7 @@ var app = express();
 var fs = require("fs");
 
 // initialize JDK path
-process['JAVA_HOME'] = 'D:\Program Files\Java\jdk1.8.0_25';
+process.env.PATH += ';D:\Program Files\Java\jdk1.8.0_25;';
 
 app.get('/ping', function (req, res) {
     console.log('Ping received.');
