@@ -1,9 +1,10 @@
 var express = require('express');
 var app = express();
 var fs = require("fs");
+var AZURE_JDK_PATH = 'D:\\Program Files\\Java\\jdk1.8.0_25\\bin'
 
 // initialize JDK path
-process.env.PATH += ';D:\\Program Files\\Java\\jdk1.8.0_25\\bin;';
+process.env.PATH += ';' + AZURE_JDK_PATH + ';';
 
 app.get('/ping', function (req, res) {
     console.log('Ping received.');

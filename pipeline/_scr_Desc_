@@ -1,0 +1,639 @@
+<?xml version="1.0"?>
+<scripts>
+
+<!-- DP1 Scripts -->
+	<script type="simple" name="daisy3_to_daisy202">
+		<input>daisy3</input>
+		<ext>xml,zip</ext>
+		<command>pipeline.bat scripts\create_distribute\dtb\Daisy3ToDaisy202.taskScript "--input=%i%" "--outputPath=%o%"</command>
+		<output>folder</output>
+		<type>daisy202</type>
+		<extension>html</extension>
+	</script>
+	<script type="simple" name="dtbook_to_daisy3dtb">
+		<input>dtbook</input>
+		<ext>xml</ext>
+		<command>pipeline.bat scripts\create_distribute\dtb\DTBookToDaisy3TextOnlyDTB.taskScript "--input=%i%" "--outputPath=%o%"</command>
+		<output>folder</output>
+		<type>daisy3dtb</type>
+		<extension>smil</extension>
+	</script>
+	<script type="simple" name="dtbook_to_daisy202">
+		<input>dtbook</input>
+		<ext>xml</ext>
+		<command>pipeline.bat scripts\create_distribute\dtb\Fileset-DtbookToDaisy202TextOnly.taskScript "--input=%i%" "--outputPath=%o%"</command>
+		<output>folder</output>
+		<type>daisy202</type>
+		<extension>html</extension>
+	</script>
+	<script type="simple" name="xhtml_to_daisy202">
+		<input>xhtml</input>
+		<ext>html,xhtml</ext>
+		<command>pipeline.bat scripts\create_distribute\dtb\Fileset-XhtmlToDaisy202TextOnly.taskScript "--input=%i%" "--outputPath=%o%"</command>
+		<output>folder</output>
+		<type>daisy202</type>
+		<extension>html</extension>
+	</script>
+	<script type="simple" name="dtbook_to_daisy">
+		<input>dtbook</input>
+		<ext>xml</ext>
+		<command>pipeline.bat scripts\create_distribute\dtb\Narrator-DtbookToDaisy.taskScript "--input=%i%" "--outputPath=%o%"</command>
+		<output>folder</output>
+		<type>daisy</type>
+		<extension>html</extension>
+	</script>
+	<script type="simple" name="dtbook_to_brailleDtbook">
+		<input>dtbook</input>
+		<ext>xml</ext>
+		<command>pipeline.bat scripts\create_distribute\dtbook\DTBookToTranslatedBrailleDTBook.taskScript "--input=%i%" "--output=%o%"</command>
+		<output>file</output>
+		<type>braille_dtbook</type>
+		<extension>xml</extension>
+	</script>
+	<script type="simple" name="wordml_to_dtbook">
+		<input>wordml</input>
+		<ext>xml</ext>
+		<command>pipeline.bat scripts\create_distribute\dtbook\WordMLtoDTBook.taskScript "--input=%i%" "--output=%o%"</command>
+		<output>folder</output>
+		<type>dtbook</type>
+		<extension>xml</extension>
+	</script>
+	<script type="simple" name="braille_to_text">
+		<input>braille</input>
+		<ext>pef</ext>
+		<command>pipeline.bat scripts\create_distribute\text\BraillePefToText.taskScript "--input=%i%" "--output=%o%" "--table=org_daisy.EmbosserTableProvider.TableType.UNICODE_BRAILLE"</command>
+		<output>file</output>
+		<type>text</type>
+		<extension>txt</extension>
+	</script>
+	<script type="simple" name="dtbook_to_xhtml">
+		<input>dtbook</input>
+		<ext>xml</ext>
+		<command>pipeline.bat scripts\create_distribute\xhtml\DtbookToXhtml.taskScript "--input=%i%" "--output=%o%"</command>
+		<output>file</output>
+		<type>xhtml</type>
+		<extension>html</extension>
+	</script>
+	<script type="simple" name="rtf_to_xhtml">
+		<input>rtf</input>
+		<ext>rtf</ext>
+		<command>pipeline.bat scripts\create_distribute\xhtml\RtfToXhtml.taskScript "--input=%i%" "--output=%o%" "--dtbookFixRunCategories=REPAIR_TIDY" "--forceRun=true" "--simplifyHeadingLayout=true" "--externalizeWhitespace=true" "--fixCharset=true"</command>
+		<output>file</output>
+		<type>xhtml</type>
+		<extension>html</extension>
+	</script>
+	<script type="simple" name="wordml_to_xhtml">
+		<input>wordml</input>
+		<ext>xml</ext>
+		<command>pipeline.bat scripts\create_distribute\xhtml\WordMLtoXhtml.taskScript "--input=%i%" "--output=%o%" "--dtbookFixRunCategories=REPAIR_TIDY" "--forceRun=true" "--simplifyHeadingLayout=true" "--externalizeWhitespace=true" "--fixCharset=true"</command>
+		<output>file</output>
+		<type>xhtml</type>
+		<extension>html</extension>
+	</script>
+	<script type="simple" name="html_to_xhtml">
+		<input>html</input>
+		<ext>html</ext>
+		<command>pipeline.bat scripts\create_distribute\xhtml\HtmlToXhtml.taskScript "--html=%i%" "--outdir=%o%" "--ignoreBogons=true"</command>
+		<output>folder</output>
+		<type>xhtml</type>
+		<extension>html</extension>
+	</script>
+	<script type="simple" name="xhtml_to_dtbook">
+		<input>xhtml</input>
+		<ext>html,xhtml</ext>
+		<command>pipeline.bat scripts\create_distribute\dtbook\Xhtml2Dtbook.taskScript "--inputFile=%i%" "--outputFile=%o%" "--uid=DigiAccess"</command>
+		<output>file</output>
+		<type>dtbook</type>
+		<extension>xml</extension>
+	</script>
+	<script type="simple" name="dtbook_fix">
+		<input>dtbook</input>
+		<ext>xml</ext>
+		<command>pipeline.bat scripts\modify_improve\dtbook\DTBookfix.taskScript "--input=%i%" "--output=%o%" "--runCategories=REPAIR_TIDY" "--forceRun=true" "--simplifyHeadingLayout=true" "--externalizeWhitespace=true" "--fixCharset=true"</command>
+		<output>file</output>
+		<type>fixed_dtbook</type>
+		<extension>xml</extension>
+	</script>
+	<script type="simple" name="rtf_to_dtbook">
+		<input>rtf</input>
+		<ext>rtf</ext>
+		<command>pipeline.bat scripts\create_distribute\dtbook\RtfToDtbook.taskScript "--rtf=%i%" "--dtbook=%o%" "--dtbookFixRunCategories=REPAIR_TIDY" "--forceRun=true" "--simplifyHeadingLayout=true" "--externalizeWhitespace=true" "--fixCharset=true"</command>
+		<output>file</output>
+		<type>dtbook</type>
+		<extension>xml</extension>
+	</script>
+	<script type="simple" name="dtbook_to_rtf">
+		<input>dtbook</input>
+		<ext>xml</ext>
+		<command>pipeline.bat scripts\create_distribute\text\DtbookToRtf.taskScript "--input=%i%" "--output=%o%" "--inclTOC=true" "--inclPagenum=true"</command>
+		<output>file</output>
+		<type>rtf</type>
+		<extension>rtf</extension>
+	</script>
+	<script type="simple" name="dtbook_to_text">
+		<input>dtbook</input>
+		<ext>xml</ext>
+		<command>pipeline.bat scripts\create_distribute\text\DTBookToText.taskScript "--input=%i%" "--output=%o%" "--setup=en-US"</command>
+		<output>file</output>
+		<type>text</type>
+		<extension>txt</extension>
+	</script>
+	<script type="simple" name="dtbook_to_latex">
+		<input>dtbook</input>
+		<ext>xml</ext>
+		<command>pipeline.bat scripts\create_distribute\latex\DTBookToLaTeX.taskScript "--input=%i%" "--output=%o%"</command>
+		<output>file</output>
+		<type>latex</type>
+		<extension>tex</extension>
+	</script>
+	<script type="simple" name="odt_to_dtbook">
+		<input>odt</input>
+		<ext>odt</ext>
+		<command>pipeline.bat scripts\create_distribute\dtbook\OdtToDtbook.taskScript "--odt=%i%" "--dtbook=%o%" "--dtbookFixRunCategories=REPAIR_TIDY" "--forceRun=true" "--simplifyHeadingLayout=true" "--externalizeWhitespace=true" "--fixCharset=true"</command>
+		<output>file</output>
+		<type>dtbook</type>
+		<extension>xml</extension>
+	</script>
+	<script type="simple" name="dtbook_to_dtbook3">
+		<input>dtbook</input>
+		<ext>xml</ext>
+		<command>pipeline.bat scripts\modify_improve\dtbook\DTBookMigrator.taskScript "--input=%i%" "--output=%o%" "--version=2005-3"</command>
+		<output>file</output>
+		<type>dtbook</type>
+		<extension>xml</extension>
+	</script>
+	
+	
+<!-- DP2 Scripts -->
+	
+	<script type="simple" name="dtbook_to_braille">
+		<input>dtbook</input>
+		<ext>xml</ext>
+		<command>dp2.exe dtbook-to-pef --i-source %i% --x-default-stylesheet bana.css --x-include-preview true --x-include-brf true --x-translator generic-liblouis-translate.xsl --output %o%</command>
+		<output>folder</output>
+		<type>braille</type>
+		<extension>pef</extension>
+	</script>
+
+	<script type="simple" name="html_to_epub">
+		<input>html</input>
+		<ext>html</ext>
+		<command>dp2.exe html-to-epub3 --x-html "%i%" --output "%o%"</command>
+		<output>folder</output>
+		<type>epub3</type>
+		<extension>epub</extension>
+	</script>
+	<script type="simple" name="daisy202_to_epub">
+		<input>daisy202</input>
+		<ext>html,zip</ext>
+		<command>dp2.exe daisy202-to-epub3 --x-href "%i%" --x-mediaoverlay true --x-compatibility-mode true --output "%o%"</command>
+		<output>folder</output>
+		<type>epub3</type>
+		<extension>epub</extension>
+	</script>
+	<script type="simple" name="daisy3_to_epub">
+		<input>daisy3</input>
+		<ext>xml,zip</ext>
+		<command>dp2.exe daisy3-to-epub3 --i-source "%i%" --x-assert-valid true --x-mediaoverlays true --output "%o%"</command>
+		<output>folder</output>
+		<type>epub3</type>
+		<extension>epub</extension>
+	</script>
+	<script type="simple" name="dtbook_to_epub">
+		<input>dtbook</input>
+		<ext>xml</ext>
+		<command>dp2.exe dtbook-to-epub3 --i-source "%i%" --x-assert-valid true --output "%o%"</command>
+		<output>folder</output>
+		<type>epub3</type>
+		<extension>epub</extension>
+	</script>
+	<script type="simple" name="dtbook_to_html">
+		<input>dtbook</input>
+		<ext>xml</ext>
+		<command>dp2.exe dtbook-to-html --i-source "%i%" --x-assert-valid true --output "%o%"</command>
+		<output>folder</output>
+		<type>html</type>
+		<extension>html</extension>
+	</script>
+	<script type="simple" name="dtbook_to_zedai">
+		<input>dtbook</input>
+		<ext>xml</ext>
+		<command>dp2.exe dtbook-to-zedai --i-source "%i%" --x-copy-external-resources true --x-assert-valid true --output "%o%"</command>
+		<output>folder</output>
+		<type>zedai</type>
+		<extension>xml</extension>
+	</script>
+	<script type="simple" name="zedai_to_epub">
+		<input>zedai</input>
+		<ext>xml</ext>
+		<command>dp2.exe zedai-to-epub3 --i-source "%i%" --output "%o%"</command>
+		<output>folder</output>
+		<type>epub3</type>
+		<extension>epub</extension>
+	</script>
+	<script type="simple" name="zedai_to_html">
+		<input>zedai</input>
+		<ext>xml</ext>
+		<command>dp2.exe zedai-to-html --i-source "%i%" --output "%o%"</command>
+		<output>folder</output>
+		<type>html</type>
+		<extension>xhtml</extension>
+	</script>
+	<script type="simple" name="zedai_to_braille">
+		<input>zedai</input>
+		<ext>xml</ext>
+		<command>dp2.exe zedai-to-pef --i-source %i% --x-default-stylesheet bana.css --x-include-preview true --x-include-brf true --x-translator generic-liblouis-translate.xsl --output %o%</command>
+		<output>folder</output>
+		<type>braille</type>
+		<extension>pef</extension>
+	</script>
+	
+<!-- Extras Scripts -->	
+	<script type="simple" name="text_to_html">
+		<input>text</input>
+		<ext>txt</ext>
+		<command>extras.bat TextToHtml "%i%" "%o%" "template.html"</command>
+		<output>file</output>
+		<type>html</type>
+		<extension>html</extension>
+	</script>
+	
+<!-- Word to Daisy Scripts -->
+	<script type="simple" name="word_to_dtbook">
+		<input>word</input>
+		<ext>docx</ext>
+		<command>DaisyTranslator /I "%i%" /O "%o%" /TITLE "%t%"</command>
+		<output>file</output>
+		<type>dtbook</type>
+		<extension>xml</extension>
+	</script>
+	
+<!-- Complex Scripts -->
+
+	<!-- Word Scripts -->
+	<script type="complex" name="word_to_braille">
+		<scriptlet>word_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_braille</scriptlet>
+	</script>
+	<script type="complex" name="word_to_epub">
+		<scriptlet>word_to_dtbook</scriptlet>
+		<!-- scriptlet>dtbook_fix</scriptlet -->
+		<scriptlet>dtbook_to_epub</scriptlet>
+	</script>
+	<script type="complex" name="word_to_zedai">
+		<scriptlet>word_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_zedai</scriptlet>
+	</script>
+	<script type="complex" name="word_to_latex">
+		<scriptlet>word_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_latex</scriptlet>
+	</script>
+	<script type="complex" name="word_to_text">
+		<scriptlet>word_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_text</scriptlet>
+	</script>
+	<script type="complex" name="word_to_rtf">
+		<scriptlet>word_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_rtf</scriptlet>
+	</script>
+	<script type="complex" name="word_to_html">
+		<scriptlet>word_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_html</scriptlet>
+	</script>
+	<script type="complex" name="word_to_xhtml">
+		<scriptlet>word_to_html</scriptlet>
+		<scriptlet>html_to_xhtml</scriptlet>
+	</script>
+	<script type="complex" name="word_to_brailleDtbook">
+		<scriptlet>word_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_brailleDtbook</scriptlet>
+	</script>
+	<script type="complex" name="word_to_daisy">
+		<scriptlet>word_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_daisy</scriptlet>
+	</script>
+	<script type="complex" name="word_to_daisy202">
+		<scriptlet>word_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_daisy202</scriptlet>
+	</script>
+	<script type="complex" name="word_to_daisy3dtb">
+		<scriptlet>word_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_daisy3dtb</scriptlet>
+	</script>
+
+	<!-- xhtml Scripts -->
+	<script type="complex" name="xhtml_to_braille">
+		<scriptlet>xhtml_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_braille</scriptlet>
+	</script>
+	<script type="complex" name="xhtml_to_zedai">
+		<scriptlet>xhtml_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_zedai</scriptlet>
+	</script>
+	<script type="complex" name="xhtml_to_epub">
+		<scriptlet>html_to_epub</scriptlet>
+	</script>
+	<script type="complex" name="xhtml_to_latex">
+		<scriptlet>xhtml_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_latex</scriptlet>
+	</script>
+	<script type="complex" name="xhtml_to_text">
+		<scriptlet>xhtml_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_text</scriptlet>
+	</script>
+	<script type="complex" name="xhtml_to_rtf">
+		<scriptlet>xhtml_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_rtf</scriptlet>
+	</script>
+	<script type="complex" name="xhtml_to_brailleDtbook">
+		<scriptlet>xhtml_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_brailleDtbook</scriptlet>
+	</script>
+	<script type="complex" name="xhtml_to_daisy">
+		<scriptlet>xhtml_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_daisy</scriptlet>
+	</script>
+	<script type="complex" name="xhtml_to_daisy3dtb">
+		<scriptlet>xhtml_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_daisy3dtb</scriptlet>
+	</script>
+	
+	<!-- html Scripts -->
+	<script type="complex" name="html_to_braille">
+		<scriptlet>html_to_xhtml</scriptlet>
+		<scriptlet>xhtml_to_braille</scriptlet>
+	</script>
+	<script type="complex" name="html_to_zedai">
+		<scriptlet>html_to_xhtml</scriptlet>
+		<scriptlet>xhtml_to_zedai</scriptlet>
+	</script>
+	<script type="complex" name="html_to_latex">
+		<scriptlet>html_to_xhtml</scriptlet>
+		<scriptlet>xhtml_to_latex</scriptlet>
+	</script>
+	<script type="complex" name="html_to_text">
+		<scriptlet>html_to_xhtml</scriptlet>
+		<scriptlet>xhtml_to_text</scriptlet>
+	</script>
+	<script type="complex" name="html_to_rtf">
+		<scriptlet>html_to_xhtml</scriptlet>
+		<scriptlet>xhtml_to_rtf</scriptlet>
+	</script>
+	<script type="complex" name="html_to_brailleDtbook">
+		<scriptlet>html_to_xhtml</scriptlet>
+		<scriptlet>xhtml_to_brailleDtbook</scriptlet>
+	</script>
+	<script type="complex" name="html_to_daisy">
+		<scriptlet>html_to_xhtml</scriptlet>
+		<scriptlet>xhtml_to_daisy</scriptlet>
+	</script>
+	<script type="complex" name="html_to_daisy202">
+		<scriptlet>html_to_xhtml</scriptlet>
+		<scriptlet>xhtml_to_daisy202</scriptlet>
+	</script>
+	<script type="complex" name="html_to_daisy3dtb">
+		<scriptlet>html_to_xhtml</scriptlet>
+		<scriptlet>xhtml_to_latex</scriptlet>
+	</script>
+	<script type="complex" name="html_to_dtbook">
+		<scriptlet>html_to_xhtml</scriptlet>
+		<scriptlet>xhtml_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+	</script>
+	
+	<!-- text Scripts -->
+	<script type="complex" name="text_to_xhtml">
+		<scriptlet>text_to_html</scriptlet>
+		<scriptlet>html_to_xhtml</scriptlet>
+	</script>
+	<script type="complex" name="text_to_braille">
+		<scriptlet>text_to_html</scriptlet>
+		<scriptlet>html_to_braille</scriptlet>
+	</script>
+	<script type="complex" name="text_to_epub">
+		<scriptlet>text_to_html</scriptlet>
+		<scriptlet>html_to_epub</scriptlet>
+	</script>
+	<script type="complex" name="text_to_zedai">
+		<scriptlet>text_to_html</scriptlet>
+		<scriptlet>html_to_zedai</scriptlet>
+	</script>
+	<script type="complex" name="text_to_latex">
+		<scriptlet>text_to_html</scriptlet>
+		<scriptlet>html_to_latex</scriptlet>
+	</script>
+	<script type="complex" name="text_to_rtf">
+		<scriptlet>text_to_html</scriptlet>
+		<scriptlet>html_to_rtf</scriptlet>
+	</script>
+	<script type="complex" name="text_to_brailleDtbook">
+		<scriptlet>text_to_html</scriptlet>
+		<scriptlet>html_to_brailleDtbook</scriptlet>
+	</script>
+	<script type="complex" name="text_to_daisy">
+		<scriptlet>text_to_html</scriptlet>
+		<scriptlet>html_to_daisy</scriptlet>
+	</script>
+	<script type="complex" name="text_to_daisy202">
+		<scriptlet>text_to_html</scriptlet>
+		<scriptlet>html_to_daisy202</scriptlet>
+	</script>
+	<script type="complex" name="text_to_daisy3dtb">
+		<scriptlet>text_to_html</scriptlet>
+		<scriptlet>html_to_latex</scriptlet>
+	</script>
+	<script type="complex" name="text_to_dtbook">
+		<scriptlet>text_to_html</scriptlet>
+		<scriptlet>html_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+	</script>
+		
+	<!-- rtf Scripts -->
+	<script type="complex" name="rtf_to_braille">
+		<scriptlet>rtf_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_braille</scriptlet>
+	</script>
+	<script type="complex" name="rtf_to_epub">
+		<scriptlet>rtf_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_epub</scriptlet>
+	</script>
+	<script type="complex" name="rtf_to_zedai">
+		<scriptlet>rtf_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_zedai</scriptlet>
+	</script>
+	<script type="complex" name="rtf_to_latex">
+		<scriptlet>rtf_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_latex</scriptlet>
+	</script>
+	<script type="complex" name="rtf_to_text">
+		<scriptlet>rtf_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_text</scriptlet>
+	</script>
+	<script type="complex" name="rtf_to_html">
+		<scriptlet>rtf_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_html</scriptlet>
+	</script>
+	<script type="complex" name="rtf_to_brailleDtbook">
+		<scriptlet>rtf_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_brailleDtbook</scriptlet>
+	</script>
+	<script type="complex" name="rtf_to_daisy">
+		<scriptlet>rtf_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_daisy</scriptlet>
+	</script>
+	<script type="complex" name="rtf_to_daisy202">
+		<scriptlet>rtf_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_daisy202</scriptlet>
+	</script>
+	<script type="complex" name="rtf_to_daisy3dtb">
+		<scriptlet>rtf_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_daisy3dtb</scriptlet>
+	</script>
+	
+	<!-- wordml Scripts -->
+	<script type="complex" name="wordml_to_braille">
+		<scriptlet>wordml_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_braille</scriptlet>
+	</script>
+	<script type="complex" name="wordml_to_epub">
+		<scriptlet>wordml_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_epub</scriptlet>
+	</script>
+	<script type="complex" name="wordml_to_zedai">
+		<scriptlet>wordml_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_zedai</scriptlet>
+	</script>
+	<script type="complex" name="wordml_to_latex">
+		<scriptlet>wordml_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_latex</scriptlet>
+	</script>
+	<script type="complex" name="wordml_to_text">
+		<scriptlet>wordml_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_text</scriptlet>
+	</script>
+	<script type="complex" name="wordml_to_rtf">
+		<scriptlet>wordml_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_rtf</scriptlet>
+	</script>
+	<script type="complex" name="wordml_to_html">
+		<scriptlet>wordml_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_html</scriptlet>
+	</script>
+	<script type="complex" name="wordml_to_brailleDtbook">
+		<scriptlet>wordml_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_brailleDtbook</scriptlet>
+	</script>
+	<script type="complex" name="wordml_to_daisy">
+		<scriptlet>wordml_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_daisy</scriptlet>
+	</script>
+	<script type="complex" name="wordml_to_daisy202">
+		<scriptlet>wordml_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_daisy202</scriptlet>
+	</script>
+	<script type="complex" name="wordml_to_daisy3dtb">
+		<scriptlet>wordml_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_daisy3dtb</scriptlet>
+	</script>
+	
+	<!-- odt Scripts -->
+	<script type="complex" name="odt_to_braille">
+		<scriptlet>odt_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_braille</scriptlet>
+	</script>
+	<script type="complex" name="odt_to_epub">
+		<scriptlet>odt_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_epub</scriptlet>
+	</script>
+	<script type="complex" name="odt_to_zedai">
+		<scriptlet>odt_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_zedai</scriptlet>
+	</script>
+	<script type="complex" name="odt_to_latex">
+		<scriptlet>odt_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_latex</scriptlet>
+	</script>
+	<script type="complex" name="odt_to_text">
+		<scriptlet>odt_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_text</scriptlet>
+	</script>
+	<script type="complex" name="odt_to_rtf">
+		<scriptlet>odt_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_rtf</scriptlet>
+	</script>
+	<script type="complex" name="odt_to_html">
+		<scriptlet>odt_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_html</scriptlet>
+	</script>
+	<script type="complex" name="odt_to_xhtml">
+		<scriptlet>odt_to_html</scriptlet>
+		<scriptlet>html_to_xhtml</scriptlet>
+	</script>
+	<script type="complex" name="odt_to_brailleDtbook">
+		<scriptlet>odt_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_brailleDtbook</scriptlet>
+	</script>
+	<script type="complex" name="odt_to_daisy">
+		<scriptlet>odt_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_daisy</scriptlet>
+	</script>
+	<script type="complex" name="odt_to_daisy202">
+		<scriptlet>odt_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_daisy202</scriptlet>
+	</script>
+	<script type="complex" name="odt_to_daisy3dtb">
+		<scriptlet>odt_to_dtbook</scriptlet>
+		<scriptlet>dtbook_fix</scriptlet>
+		<scriptlet>dtbook_to_daisy3dtb</scriptlet>
+	</script>
+	
+</scripts>
