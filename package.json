@@ -2,7 +2,6 @@
   "name": "DaisyWrapperWebAPI",
   "version": "0.0.1",
   "description": "Node JS wrapper for Daisy pipeline components",
-  "main": "app.js",
   "author": {
     "name": "v-giragh",
     "email": ""
