@@ -13,7 +13,7 @@ app.get('/ping', function (req, res) {
 function getJavaVersion(res){
     var spawn = require('child_process').spawn('java',['-version']);
     spawn.on('error', function(err){
-        res.end('Unable to find Java installation or encountered other error.' + process.env + err);
+        res.end('Unable to find Java installation or encountered other error.' + process.env.PATH + err);
     })
     spawn.stderr.on('data',function(data){
        data = data.toString().split('\n')[0];
