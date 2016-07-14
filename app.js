@@ -18,17 +18,87 @@ app.get('/ping', function (req, res) {
 })
 
 app.get('/config', function(req, res){
+    res.writeHead(200, {"Content-Type": "application/json"});
+    res.end(JSON.stringify(jobConfig));
+});
+
+app.post('/invoke', function (req, res) {
+    console.log('Invoked new job conversion.');
+    var postMessage = req.body;
+    var inputExtension = postMessage.input.type;
+    var outputExtension = postMessage.output.type;
+    var message = '';
+    
+    var configKey = inputExtension + "_to_" + outputExtension;
+    var settings = jobConfig[configKey];
+    if(typeof(settings) != 'undefined')
+    {
+        // todo: check for empty component base directory.
+        var command = __dirname + "\\pipeline\\" + getComponentBaseDir(settings.command) + settings.command;
+        
+        var exec = require('child_process').exec(command, function(err, stdout, stderr){
+            if(err){
+                console.error(err);
+                return;
+            }
+            console.log(stdout);
+        });
+        
+        res.writeHead(200, {"Content-Type": "application/json"});
+        res.end(JSON.stringify({'status':'ok','message' : 'Executed following command - ' + settings.command}));        
+    }
+    else
+    {
+        res.writeHead(400, {"Content-Type": "application/json"});
+        res.end(JSON.stringify({'status':'error','message' : 'Missing config key for - ' + configKey}));
+    }
+})
+
+function getComponentBaseDir(command){
+		if(command.startsWith("dp2")){
+			return "dp2\\";
+		}
+		else if(command.startsWith("pipeline")){
+			return "dp1\\";
+		}
+		else if(command.startsWith("extras")){
+			return "extras\\";
+		}
+		else if(command.startsWith("daisy")){
+			return "word\\";
+		}
+		else{
+			console.log("Invalid Command : " + command);
+            return "";
+        }
+}
+
+function getJavaVersion(res){
+    var spawn = require('child_process').spawn('java',['-version']);
+    spawn.on('error', function(err){
+        res.end('Unable to find Java installation or encountered other error.' + process.env.PATH + err);
+    })
+    spawn.stderr.on('data',function(data){
+       data = data.toString().split('\n')[0];
+       var javaVersion = new RegExp('java version').test(data) ? data.split(' ')[2].replace(/"/g, '') : false;
+        if (javaVersion != false) {
+            res.end('Following Java version is installed - ' + javaVersion);
+        } else {
+            res.end('No Java VM installed.');
+        }
+    });
+}
+
+function initializeConfig(){
     var xml2js = require('xml2js');
     var parser = new xml2js.Parser();
     
     fs.readFile(__dirname + CONVERTER_LIST, function(err, data) {
         parser.parseString(data, function (err, result) {
             jobConfig = buildConfigJSON(result);
-            res.writeHead(200, {"Content-Type": "application/json"});
-            res.end(JSON.stringify(jobConfig));
         });
     });
-});
+}
 
 function buildConfigJSON(config){
     var configJSON = {};
@@ -59,38 +129,11 @@ function buildConfigJSON(config){
     return configJSON;
 }
 
-app.post('/invoke', function (req, res) {
-    console.log('Invoked new job conversion.');
-    var postMessage = req.body;
-    
-    
-    
-    
-    
-    res.writeHead(200, {"Content-Type": "application/json"});
-    res.end(JSON.stringify({'status':'ok'}));
-})
-
-function getJavaVersion(res){
-    var spawn = require('child_process').spawn('java',['-version']);
-    spawn.on('error', function(err){
-        res.end('Unable to find Java installation or encountered other error.' + process.env.PATH + err);
-    })
-    spawn.stderr.on('data',function(data){
-       data = data.toString().split('\n')[0];
-       var javaVersion = new RegExp('java version').test(data) ? data.split(' ')[2].replace(/"/g, '') : false;
-        if (javaVersion != false) {
-            res.end('Following Java version is installed - ' + javaVersion);
-        } else {
-            res.end('No Java VM installed.');
-        }
-    });
-}
-
-
 var server = app.listen(process.env.PORT || 3000, function () {
   var host = server.address().address
   var port = server.address().port
-
+  
+  initializeConfig();
+  
   console.log("API end point listening at http://%s:%s", host, port);
 })

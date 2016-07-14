@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 <scripts>
-
 <!-- DP1 Scripts -->
 	<script type="simple" name="daisy3_to_daisy202">
 		<input>daisy3</input>
@@ -248,7 +247,7 @@
 		<extension>pef</extension>
 	</script>
 	
-<!-- Extras Scripts -->	
+	<!-- Extras Scripts -->	
 	<script type="simple" name="text_to_html">
 		<input>text</input>
 		<ext>txt</ext>
@@ -258,7 +257,7 @@
 		<extension>html</extension>
 	</script>
 	
-<!-- Word to Daisy Scripts -->
+	<!-- Word to Daisy Scripts -->
 	<script type="simple" name="word_to_dtbook">
 		<input>word</input>
 		<ext>docx</ext>
