@@ -36,8 +36,12 @@ app.post('/invoke', function (req, res) {
         // todo: check for empty component base directory.
         var command = __dirname + "\\pipeline\\" + getComponentBaseDir(settings.command) + settings.command;
         
+        var errMessage = "";
+        var outputMessage = "";
+        
         var exec = require('child_process').exec(command, function(err, stdout, stderr){
             if(err){
+                errMessage = err;
                 console.error(err);
                 return;
             }
